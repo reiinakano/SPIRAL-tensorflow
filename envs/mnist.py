@@ -134,10 +134,11 @@ class MNIST(Environment):
         if 'size' in self.action_sizes:
             self.b.brushinfo.set_base_value('radius_logarithmic', size)
 
-        if (self.s_x is None and self.s_y is None) or \
-                ('jump' in self.action_sizes and jump):
+        if (self.s_x is None and self.s_y is None):
             # when self._step == 0
             self.s_x, self.s_y = 0, 0
+            self._stroke_to(self.s_x, self.s_y, pressure)
+        elif 'jump' in self.action_sizes and jump:
             # when jump
             pressure = 0
             self._stroke_to(self.s_x, self.s_y, pressure)
