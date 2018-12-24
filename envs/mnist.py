@@ -137,13 +137,10 @@ class MNIST(Environment):
         if (self.s_x is None and self.s_y is None):
             # when self._step == 0
             self.s_x, self.s_y = 0, 0
-            self._stroke_to(self.s_x, self.s_y, pressure)
-        elif 'jump' in self.action_sizes and jump:
+        if 'jump' in self.action_sizes and jump:
             # when jump
             pressure = 0
-            self._stroke_to(self.s_x, self.s_y, pressure)
-        else:
-            self._stroke_to(self.s_x, self.s_y, pressure)
+        self._stroke_to(self.s_x, self.s_y, pressure)
 
         self._draw(x, y, c_x, c_y, pressure, size, color, dtime)
 
